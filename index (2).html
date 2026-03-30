@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Your Title Here</title>
+
+<!-- 🌸 SOFT AESTHETIC STYLING -->
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+        background: url('backg.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        overflow-x: hidden;
+        text-align: center;
+        animation: fadeInPage 2s ease-in-out;
+    }
+
+    /* 🌸 PAGE OPENING FADE */
+    @keyframes fadeInPage {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    /* 🌸 MAIN TITLE */
+    h1 {
+        font-size: 3rem;
+        margin-top: 25px;
+        color: #ff4f8b;
+        text-shadow: 
+            0 0 10px #ffb6c9,
+            0 0 20px #ff8fb3,
+            0 0 40px #ff6fa1;
+    }
+
+    /* 💗 MAIN PHOTO */
+    .main-photo {
+        width: 270px;
+        height: 270px;
+        border-radius: 20px;
+        margin: auto;
+        background: url('main.jpg');
+        background-size: cover;
+        background-position: center;
+        box-shadow: 0 0 25px rgba(255, 182, 193, 0.7);
+        animation: zoomIn 2s ease;
+    }
+
+    @keyframes zoomIn {
+        from { transform: scale(0.6); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+
+    /* 🌸 MESSAGE BOX WITH GLOW */
+    .message-box {
+        width: 85%;
+        max-width: 700px;
+        margin: 25px auto;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(8px);
+        border-radius: 20px;
+        border: 2px solid rgba(255, 182, 193, 0.4);
+        color: black;
+        font-size: 1.2rem;
+        text-shadow: 0 0 5px rgba(255,255,255,0.6);
+        box-shadow: 0 0 20px rgba(255, 182, 193, 0.6);
+        min-height: 120px;
+    }
+
+    /* 🌸 SLIDESHOW */
+    #slide {
+        width: 270px;
+        height: 270px;
+        border-radius: 20px;
+        object-fit: cover;
+        margin-top: 20px;
+        box-shadow: 0 0 25px rgba(255, 182, 193, 0.7);
+    }
+
+    /* 🌸 BUTTONS */
+    button {
+        padding: 12px 20px;
+        border: none;
+        border-radius: 12px;
+        margin: 10px;
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+        box-shadow: 0 0 12px rgba(255,182,193,0.8);
+    }
+    .music-btn { background: #ff6fa1; }
+    .confetti-btn { background: #ff8fb3; }
+    .popup-btn { background: #d65a8b; }
+
+    /* 🌸 POPUP CARD */
+    .popup-card {
+        position: fixed;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        background: white;
+        width: 80%;
+        max-width: 350px;
+        padding: 20px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 0 25px rgba(255,182,193,0.7);
+        transition: 0.4s ease;
+        z-index: 999;
+    }
+    .popup-card.show {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    /* 🌸 SPARKLE OVERLAY */
+    .sparkle {
+        position: fixed;
+        width: 5px;
+        height: 5px;
+        background: white;
+        border-radius: 50%;
+        pointer-events: none;
+        animation: sparkleAnim 1s linear forwards;
+        z-index: 999999;
+    }
+    @keyframes sparkleAnim {
+        to { transform: scale(1.8); opacity: 0; }
+    }
+
+    /* 💗 HEART FALLING ANIMATION */
+    .floating-heart {
+        position: fixed;
+        color: pink;
+        font-size: 1.8rem;
+        animation: float 6s linear infinite;
+        opacity: 0.7;
+    }
+    @keyframes float {
+        0% { top: 100vh; opacity: 0; }
+        50% { opacity: 1; }
+        100% { top: -10vh; opacity: 0; }
+    }
+
+    /* 💗 HEART CURSOR TRAIL */
+    .cursor-heart {
+        position: fixed;
+        pointer-events: none;
+        color: #ff6fa1;
+        animation: heartTrail 1s linear forwards;
+        font-size: 1.2rem;
+    }
+    @keyframes heartTrail {
+        to { transform: translateY(-20px) scale(0); opacity: 0; }
+    }
+</style>
+</head>
+
+<body>
+
+<h1> HAPPPYYYY 2O ! </h1>
+
+<!-- 🌸 MAIN PHOTO -->
+<div class="main-photo"></div>
+
+<!-- 🌸 TYPEWRITER MESSAGE BOX -->
+<div class="message-box" id="typeBox"></div>
+
+<!-- 🌸 BUTTONS -->
+<button class="music-btn" onclick="playMusic()">Play Music</button>
+<button class="confetti-btn" onclick="startConfetti()">Confetti</button>
+<button class="popup-btn" onclick="showPopup()">Open Card</button>
+
+<!-- 🌸 SLIDESHOW -->
+<img id="slide" src="p1.jpg" />
+
+<!-- 🎥 AUTO-PLAY VIDEO GALLERY -->
+<div class="video-section">
+    
+    <video class="vid" src="vd.mp4" autoplay loop muted playsinline></video>
+    <video class="vid" src="vd1.mp4" autoplay loop muted playsinline></video>
+    <video class="vid" src="vd2.mp4" autoplay loop muted playsinline></video>
+    <video class="vid" src="vd3.mp4" autoplay loop muted playsinline></video>
+</div>
+<!-- 🌸 POPUP CARD -->
+<div id="popup" class="popup-card">
+    <h2>💗 For You 💗</h2>
+    <p style="font-size:1.2rem; color:#d65a8b;">
+        Tera saath ho toh har pal khoobsurat lagta hai.<br>
+        Tu meri zindagi ka sabse pyara hissa hai.
+    </p>
+    <button onclick="closePopup()" style="background:#ff6fa1;">Close</button>
+</div>
+
+<audio id="bgm" loop>
+    <source src="DOORON.mp4" type="audio/mp4" />
+</audio>
+ 💗🥹
+<!-- 🌸 FULL JAVASCRIPT -->
+<script>
+/* 🌸 TYPEWRITER PARAGRAPH */
+const message = "Happy birthday my botuchand, mere chaaand. wishing you a great great 20th birthday batchchi badi ho rahi h never ever stop your inner child growing can't wait to celebrate yours with you :( i lovee youu alottt big fooot.";
+let i = 0;
+function typeWriter() {
+    if (i < message.length) {
+        document.getElementById("typeBox").innerHTML = message.substring(0, i+1);
+        i++;
+        setTimeout(typeWriter, 40);
+    }
+}
+typeWriter();
+
+/* 🌸 MUSIC */
+function playMusic(){ document.getElementById("bgm").play(); }
+
+/* 🌸 SLIDESHOW */
+const slides = ["p1.jpg","p2.jpg","p3.jpg","p4.jpg"];
+let s = 0;
+setInterval(()=>{
+    s = (s+1)%slides.length;
+    document.getElementById("slide").src = slides[s];
+}, 2500);
+
+/* 🌸 CONFETTI */
+function startConfetti(){
+    for(let x=0;x<120;x++){
+        let heart = document.createElement("div");
+        heart.innerHTML = "💖";
+        heart.style.position="fixed";
+        heart.style.left = Math.random()*100+"vw";
+        heart.style.top="-10vh";
+        heart.style.fontSize="1.5rem";
+        heart.style.animation="float 3s linear";
+        document.body.appendChild(heart);
+        setTimeout(()=>heart.remove(),3000);
+    }
+}
+
+/* 🌸 POPUP */
+function showPopup(){
+    document.getElementById("popup").classList.add("show");
+}
+function closePopup(){
+    document.getElementById("popup").classList.remove("show");
+}
+
+/* 🌸 FLOATING HEARTS */
+setInterval(()=>{
+    let h = document.createElement("div");
+    h.classList.add("floating-heart");
+    h.innerHTML = "💗";
+    h.style.left = Math.random()*100+"vw";
+    h.style.fontSize = (1+Math.random()*1.5)+"rem";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+}, 600);
+
+/* 🌸 HEART CURSOR TRAIL */
+document.addEventListener("mousemove", (e)=>{
+    let h = document.createElement("div");
+    h.classList.add("cursor-heart");
+    h.style.left = e.pageX + "px";
+    h.style.top = e.pageY + "px";
+    h.innerHTML = "💞";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),1000);
+});
+
+/* 🌸 SPARKLE */
+setInterval(()=>{
+    let s = document.createElement("div");
+    s.classList.add("sparkle");
+    s.style.left = Math.random()*100+"vw";
+    s.style.top = Math.random()*100+"vh";
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(),1000);
+}, 250);
+</script>
+
+</body>
+</html>
